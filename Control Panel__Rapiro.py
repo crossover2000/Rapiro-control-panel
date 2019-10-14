@@ -1,6 +1,6 @@
 import serial
 import time
-ser = serial.Serial('/dev/cu.usbserial-DA01HOL6', 9600, timeout=1)
+ser = serial.Serial('/dev/cu.usbserial-DA01HOL6', 9600, timeout=1) #the Serial could be "COM6" on windows
 ser_forward= '#M1'
 ser_back = '#M2'
 ser_left = '#M4'
@@ -11,27 +11,27 @@ ser_wr = '#M6'
 ser_wb = '#M5'
 ser_sb = '#M7'
 
-#建立窗口
+#建立窗口 build a window
 import tkinter as tk
 window = tk.Tk()
 window.title('Rapiro遥控器')
 window.geometry('400x400')
 window.config(bg='yellow')
 
-#建立一个标题Label
+#建立一个标题 build a Label
 var_act = tk.StringVar() #建立一个显示变量
 label = tk.Label(window, textvariable= var_act, bg='pink', width= 15, height= 2, pady= 10)
 label.pack()
 
-#建立一个分隔符
+#建立一个分隔符 build a separate
 separator = tk.Frame(height=2, pady=20, bd=1, relief="sunken")
 separator.pack(fill="x")
 
-#建立按键的主Frame
+#建立按键的主Frame build main frame
 frm_panal = tk.Frame(window, pady = 50)
 frm_panal.pack()
 
-#定义按键输出，点一下，先让Label显示指令
+#定义按键输出，点一下，先让Label显示指令 show click command
 def forward():
     var_act.set('前进')
     ser.write(ser_forward.encode('utf-8')) #串口发送数据
